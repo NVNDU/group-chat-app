@@ -1,9 +1,8 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,10 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.plaf.FontUIResource;
 
 public class MainWindow extends JFrame{
-    JTextField textField;
-    JButton joinBtn;
-    JPanel topPanel,centerPanel,bottomPanel;
-    JLabel label;
+    private JTextField textField;
+    private JButton joinBtn;
+    private JPanel topPanel,centerPanel,bottomPanel;
+    private JLabel label;
     private PublicChat publicChat;
 
     public MainWindow(PublicChat publicChat){
@@ -28,6 +27,9 @@ public class MainWindow extends JFrame{
         setTitle("ChatApp 1.0");
         setDefaultCloseOperation(2);
         setLocationRelativeTo(null);
+
+        ImageIcon icon = new ImageIcon("./assets/chat_9838062.png");
+        setIconImage(icon.getImage());
 
         label = new JLabel("Enter ur name :");
         label.setFont(new Font("",1,20));
@@ -50,6 +52,10 @@ public class MainWindow extends JFrame{
         bottomPanel = new JPanel();
         bottomPanel.add(joinBtn);
         add(bottomPanel,BorderLayout.PAGE_END);
+
+        textField.addActionListener((e)->{
+            joinBtn.doClick();
+        });
 
         joinBtn.addActionListener((e)->{
             String chatName = textField.getText();
